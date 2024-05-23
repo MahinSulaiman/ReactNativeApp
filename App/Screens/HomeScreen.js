@@ -1,29 +1,36 @@
-import { StyleSheet, View, Text, Image, Button } from "react-native";
+import { StyleSheet, View, Text, Image, ScrollView,TouchableOpacity,Dimensions } from "react-native";
 // import PosterImg from './PosterImgs';
 import { PosterImgs } from "../components/PosterImgs";
 import MovieCards from "../components/MovieCards";
 
 export default function HomeScreen() {
+ 
   return (
-    <View style={styles.container}>
+    <ScrollView style={styles.container}>
     <View style={styles.poster}>
       <View style={styles.top}>
         <Image style={styles.img} source={require("../../assets/logo.webp")} />
-        <Button title="Subscribe"/>
+        {/* <Button  title="Subscribe"/> */}
+        <TouchableOpacity activeOpacity={5} style={styles.subButton}>
+          <Text style={{color:"yellow"}}>Subscribe</Text>
+        </TouchableOpacity>
+        
       </View>
-
+   
       <PosterImgs />
+
+      
       </View>
-      <View style={styles.buttons}>
-            <Button title='Watch Now'/>
-            <Button title='+'/>
-            </View> 
-      {/* <View style={styles.poster}>
-      <MovieCards/>
-      </View> */}
+    
+      <View style={styles.poster}>
+        <Text style={{color:"white"}}>Family Movies</Text>
+      <MovieCards movieUrl="https://api.sampleapis.com/movies/family"/>
+      <Text style={{color:"white"}}>Family Movies</Text>
+      <MovieCards movieUrl="https://api.sampleapis.com/movies/animation"/>
+      </View>
      
       
-    </View>
+    </ScrollView>
   );
 }
 
@@ -31,15 +38,9 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
 
-    backgroundColor:'green'
+    backgroundColor: '#040714',
   },
 
-  logoContainer: {
-    position: "absolute",
-    top: 25, // Adjust this value as needed to position the logo
-    left: 20, // Adjust this value as needed to position the logo
-    zIndex: 1,
-  },
 
   img: {
     width: 50,
@@ -51,11 +52,25 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     gap: 10,
     justifyContent: "center",
+    marginTop:20
+  },
+
+  subButton:{
+    height:30,
+    backgroundColor:"lightbrown",
+    borderWidth:1,
+    borderColor:"gold",
+    marginTop:4
+    // opacity:1
+   
   },
 
 
   poster: {
-    flex: 0.4,
+    flex: 0.5,
+    
+    // height:"50%",
+    marginTop:20,
   },
 
   top:{
@@ -66,6 +81,6 @@ const styles = StyleSheet.create({
     // backgroundColor:"red",
     width:"100%",
     padding:"2%",
-    top:"5%"
+    top:"7%"
   }
 });

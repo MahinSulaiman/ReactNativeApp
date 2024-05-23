@@ -5,6 +5,7 @@ import HomeScreen from '../Screens/HomeScreen';
 import AccountScreen from '../Screens/AccountScreen';
 import DownloadScreen from '../Screens/DownloadScreen';
 import SearchScreen from '../Screens/SearchScreen';
+import MovieDetail from '../Screens/MovieDetail';
 import { Foundation } from '@expo/vector-icons';
 import { Feather } from '@expo/vector-icons';
 import { Octicons } from '@expo/vector-icons';
@@ -57,6 +58,7 @@ export default function TabNavigation() {
 
       ),tabBarStyle:{backgroundColor:'black'}}}
     />
+         <Tab.Screen name="detailed" component={MovieDetail} />
    
     
 
