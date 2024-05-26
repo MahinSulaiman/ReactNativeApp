@@ -124,13 +124,14 @@ const styles = StyleSheet.create({
     opacity: 0.8,
   },
   dot: {
-    backgroundColor: "rgba(0,0,0,.2)",
+    backgroundColor: "gray",
     width: 8,
     height: 8,
     borderRadius: 4,
     marginLeft: 3,
     marginRight: 3,
     top: 20,
+    // color:"red"
   },
   activeDot: {
     backgroundColor: "white",

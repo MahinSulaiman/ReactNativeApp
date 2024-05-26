@@ -6,35 +6,22 @@ import {
   ScrollView,
   Dimensions,
   TouchableOpacity,
+ 
 } from "react-native";
 import React from "react";
-import { useState, useEffect } from "react";
-import axios from "axios";
 import { useNavigation } from "@react-navigation/native";
 
-export default function MovieCards({ movieUrl }) {
-  const [movies, setMovies] = useState([]);
+export default function MovieCards({movies}) {
+  
   const windowWidth = Dimensions.get("window").width;
   const navigation = useNavigation();
   const cardWidth = windowWidth * 0.35;
   const cardHeight = Dimensions.get("window").height * 0.25;
 
-  useEffect(() => {
-    getData();
-  }, []);
-
-  const getData = async () => {
-    try {
-      const response = await axios.get(movieUrl);
-      setMovies(response.data);
-    } catch (error) {
-      console.error("Error fetching data:", error);
-    }
-  };
-
+  
   return (
     <ScrollView horizontal>
-      {movies.map((movie, index) => (
+      {movies && movies.map((movie, index) => (
         <View key={index}>
           <TouchableOpacity
             onPress={() => navigation.navigate("detailed", { movie })}

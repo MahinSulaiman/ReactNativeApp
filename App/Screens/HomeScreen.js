@@ -9,6 +9,7 @@ import {
 } from "react-native";
 import { PosterImgs } from "../components/PosterImgs";
 import MovieCards from "../components/MovieCards";
+import GetMovies from "../Api/GetMovies";
 import TitleCards from "../components/TitleCards";
 
 
@@ -36,16 +37,16 @@ export default function HomeScreen() {
 
       <View style={styles.poster}>
         <Text style={{ color: "white" }}>Family Movies</Text>
-        <MovieCards movieUrl="https://api.sampleapis.com/movies/family" />
+        <GetMovies movieUrl="https://api.sampleapis.com/movies/family" />
         <Text style={{ color: "white" }}>Animation Movies</Text>
-        <MovieCards movieUrl="https://api.sampleapis.com/movies/animation" />
+        <GetMovies movieUrl="https://api.sampleapis.com/movies/animation" />
         <Text style={{ color: "white" }}>Horror Movies</Text>
-        <MovieCards movieUrl="https://api.sampleapis.com/movies/horror"/>
+        <GetMovies movieUrl="https://api.sampleapis.com/movies/horror"/>
        
         <Text style={{ color: "white" }}>Popular Languages</Text>
         <TitleCards />
         <Text style={{ color: "white" }}>Comedy Movies</Text>
-        <MovieCards movieUrl="https://api.sampleapis.com/movies/comedy"/>
+        <GetMovies movieUrl="https://api.sampleapis.com/movies/comedy"/>
         
         
       </View>

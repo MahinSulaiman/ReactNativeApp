@@ -3,7 +3,7 @@ import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createStackNavigator } from "@react-navigation/stack";
 import HomeScreen from "../Screens/HomeScreen";
-import AccountScreen from "../Screens/AccountScreen";
+import FavouriteScreen from "../Screens/FavouriteScreen";
 import DownloadScreen from "../Screens/DownloadScreen";
 import SearchScreen from "../Screens/SearchScreen";
 import MovieDetail from "../Screens/MovieDetail";
@@ -20,7 +20,9 @@ const Stack = createStackNavigator();
 export default function TabNavigation() {
   return (
     <Tab.Navigator
-      screenOptions={{ headerShown: false, tabBarActiveTintColor: "white" }}
+      
+      screenOptions={{ headerShown: false, tabBarActiveTintColor: "white",  tabBarHideOnKeyboard: true}}
+      
     >
       <Tab.Screen
         name="Home"
@@ -39,6 +41,7 @@ export default function TabNavigation() {
           tabBarIcon: ({ color }) => (
             <Feather name="search" size={24} color={color} />
           ),
+  
           tabBarStyle: { backgroundColor: "black" },
         }}
       />
@@ -67,7 +70,7 @@ export default function TabNavigation() {
 
       <Tab.Screen
         name="My Space"
-        component={AccountScreen}
+        component={FavouriteScreen}
         options={{
           tabBarIcon: ({ color }) => (
             <MaterialIcons name="account-circle" size={24} color={color} />
