@@ -8,12 +8,14 @@ import {
   TouchableOpacity,
  
 } from "react-native";
-import React,{useState,useEffect} from "react";
+import React,{useState,useEffect,useContext} from "react";
 import { useNavigation } from "@react-navigation/native";
 import { GetMovies } from "../Api/GetMovies";
+import { AllMoviesContext } from "../context/AllMoviesContext";
 
 
 export default function MovieCards({movieUrl}) {
+  const {allMovies,setAllMovies}=useContext(AllMoviesContext)
   
   const windowWidth = Dimensions.get("window").width;
   const navigation = useNavigation();
@@ -29,7 +31,9 @@ export default function MovieCards({movieUrl}) {
       const getData = async () => {
             
               const response = await GetMovies(movieUrl);
-              setMovies(response.data);
+              const newMovies = response.data;
+              setMovies(newMovies);
+              setAllMovies(prevAllMovies => [...prevAllMovies, ...newMovies]);
            
           };
   

@@ -17,7 +17,7 @@ import NewScreen from "../Screens/NewScreen";
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
 
-export default function TabNavigation() {
+export default function AppNavigation() {
   return (
     <Tab.Navigator
       

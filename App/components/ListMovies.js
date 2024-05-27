@@ -9,9 +9,11 @@ export default function ListMovies({movies}) {
     const navigation = useNavigation();
     const cardWidth = windowWidth * 0.30;
     const cardHeight = Dimensions.get("window").height * 0.25;
+    
     return (
       <View style={styles.container}>
         {movies && movies.map((movie, index) => (
+          
           <View key={index}>
             <TouchableOpacity
               onPress={() => navigation.navigate("detailed", { movie })}
@@ -35,7 +37,7 @@ export default function ListMovies({movies}) {
   
   const styles=StyleSheet.create({
     container:{
-      flex:1,
+      // flex:1,
       flexWrap:"wrap",
     //   backgroundColor:"black",
       flexDirection:"row"

@@ -1,9 +1,16 @@
-import { View, Text ,TextInput, StyleSheet,KeyboardAvoidingView} from 'react-native'
-import React from 'react'
+import { View, Text ,TextInput, StyleSheet,KeyboardAvoidingView,ScrollView} from 'react-native'
+import React,{useContext,useState} from 'react'
 import { Feather } from "@expo/vector-icons";
 import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { AllMoviesContext } from '../context/AllMoviesContext';
+import ListMovies from '../components/ListMovies';
+import SearchMovie from '../components/SearchMovie';
 
 export default function SearchScreen() {
+
+  const {allMovies}=useContext(AllMoviesContext)
+  const [searchQuery, setSearchQuery] = useState('');
+
   return (
     
     <View style={styles.container}>
@@ -18,15 +25,25 @@ export default function SearchScreen() {
           autoCapitalize="none"
           autoCorrect={false}
           clearButtonMode="always"
-          textAlign="center"
-          
-         
+          textAlign="center"        
           placeholder="Movies, shows and more"
           style={styles.input}
+          onChangeText={setSearchQuery}
+          value={searchQuery}
         />            
     </View>
-    <Text style={{color:"white",fontWeight:"bold",fontSize:20,marginTop:20}}>Trending in</Text>
+    {/* <ScrollView>
+    
+     <ListMovies movies={allMovies}/>
+    </ScrollView> */}
+    <ScrollView>
+    <Text style={styles.title}>Trending in</Text>
+    <SearchMovie query={searchQuery}/>
+    </ScrollView>
+    
+    
     </KeyboardAvoidingView>
+    
 
     </View>
     
@@ -38,6 +55,7 @@ const styles=StyleSheet.create({
  
     flex:1,
     backgroundColor:"black",
+    paddingTop:"20%"
     
     // justifyContent:"center"
     
@@ -49,9 +67,9 @@ const styles=StyleSheet.create({
   searchBar:{
     backgroundColor: 'white',
     paddingHorizontal: 20,
-    marginTop: "25%",
+    // marginTop: "25%",
     borderRadius: 10,
-    height:"20%",
+    height:50,
    justifyContent:"center",
    position:"relative"
  
@@ -76,5 +94,12 @@ const styles=StyleSheet.create({
     fontSize:20,
     
 
+  },
+
+  title:{
+     color:"white",
+     fontWeight:"bold",
+     fontSize:30,
+     margin:10
   }
 })
