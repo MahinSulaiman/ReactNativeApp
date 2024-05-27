@@ -1,35 +1,27 @@
-import { View, Text, Image, StyleSheet, TouchableOpacity,ScrollView} from "react-native";
+import {
+  View,
+  Text,
+  Image,
+  StyleSheet,
+  TouchableOpacity,
+  ScrollView,
+} from "react-native";
 import React from "react";
-import { AntDesign } from '@expo/vector-icons';
-import { MaterialCommunityIcons } from '@expo/vector-icons';
-import { Ionicons } from '@expo/vector-icons';
+import { AntDesign } from "@expo/vector-icons";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
+import { Ionicons } from "@expo/vector-icons";
 import MovieCards from "../components/MovieCards";
 import { FavouritesContext } from "../context/FavouritesContext";
-import { useContext,useState,useEffect } from "react";
-import GetMovies from "../Api/GetMovies";
-
+import { useContext, useState, useEffect } from "react";
 
 export default function MovieDetail({ route }) {
   const { movie } = route.params;
-  const [isFavourite, setIsFavourite] = useState(false);
-  const {favourites,setFavourites}=useContext(FavouritesContext)
-  useEffect(() => {
-    setIsFavourite(favourites.some(favorite => favorite.imdbId === movie.imdbId));
-  }, [favourites]);
+  // const [isFavourite, setIsFavourite] = useState(false);
+  const { favourites, Favourite, toggleFavourite } =
+    useContext(FavouritesContext);
 
-  const AddFavourite = (FavouriteMovie) => {
-    // setIsFavourite(favourites.some((favorite) => favorite.id === FavouriteMovie.id));
-    if (isFavourite) {
-      setFavourites(favourites.filter((movie) => movie.imdbId !== FavouriteMovie.imdbId));
-      // setIsFavourite(false);
-      console.log("removed");
-    } else {
-      setFavourites([...favourites, FavouriteMovie]);
-      // setIsFavourite(true);
-      console.log("added");
-      color = "red";
-    }
-  };
+  const fav = Favourite(movie);
+
   return (
     <ScrollView style={styles.detailed}>
       <View style={{ margin: 5 }}>
@@ -73,40 +65,54 @@ export default function MovieDetail({ route }) {
           </Text>
         </View>
         <View style={{ flexDirection: "row", justifyContent: "center" }}>
-        <TouchableOpacity style={styles.button}>
-          <Text
-            style={{
-              color: "black",
-              fontWeight: "bold",
-              alignSelf: "center",
-              fontSize: 20,
-            }}
-          >
-            Subscribe to Watch
+          <TouchableOpacity style={styles.button}>
+            <Text
+              style={{
+                color: "black",
+                fontWeight: "bold",
+                alignSelf: "center",
+                fontSize: 20,
+              }}
+            >
+              Subscribe to Watch
+            </Text>
+          </TouchableOpacity>
+        </View>
+        <View>
+          <Text style={{ color: "gray", fontSize: 20, margin: 10 }}>
+            Joy, Sadness, Anger, Fear and Disgust have been running a successful
+            operation by all accounts. However, when Anxiety shows up, they
+            aren't sure how to feel.
           </Text>
-        </TouchableOpacity>
+        </View>
       </View>
-      <View>
-        <Text style={{color:"gray",fontSize:20,margin:10}}>Joy, Sadness, Anger, Fear and Disgust have been running a successful 
-          operation by all accounts. However, when Anxiety shows up,
-           they aren't sure how to feel.</Text>
+      <View style={{ flexDirection: "row", justifyContent: "space-evenly" }}>
+        <AntDesign name="plus" size={24} color="white" />
+        <MaterialCommunityIcons name="share" size={24} color="white" />
+        {/* <Ionicons name="heart-outline" size={24} color="red" filled="red"/> */}
+        {/* <TouchableOpacity onpress={AddFavourite({movie})}> */}
+        <MaterialCommunityIcons
+          name="cards-heart"
+          size={24}
+          color={fav ? "red" : "yellow"}
+          onPress={() => toggleFavourite(movie)}
+        />
+        {/* </TouchableOpacity> */}
       </View>
-      </View>
-      <View style={{flexDirection:"row",justifyContent:"space-evenly"}}>
-      <AntDesign name="plus" size={24} color="white" />
-      <MaterialCommunityIcons name="share" size={24} color="white" />
-      {/* <Ionicons name="heart-outline" size={24} color="red" filled="red"/> */}
-      {/* <TouchableOpacity onpress={AddFavourite({movie})}> */}
-      <MaterialCommunityIcons name="cards-heart" size={24} color={isFavourite ? "red":"yellow"}  onPress={() => AddFavourite(movie)}/>
-      {/* </TouchableOpacity> */}
-      </View>
-      
 
       <View>
-      <Text style={{ fontSize: 25, fontWeight: "bold", color: "white" ,marginTop:30}}>More Like This</Text>
-      <GetMovies movieUrl="https://api.sampleapis.com/movies/family" />
+        <Text
+          style={{
+            fontSize: 25,
+            fontWeight: "bold",
+            color: "white",
+            marginTop: 30,
+          }}
+        >
+          More Like This
+        </Text>
+        <MovieCards movieUrl="https://api.sampleapis.com/movies/family" />
       </View>
-     
     </ScrollView>
   );
 }
@@ -123,7 +129,6 @@ const styles = StyleSheet.create({
   detailed: {
     flex: 1,
     backgroundColor: "#040714",
-    
   },
 
   button: {
@@ -133,7 +138,6 @@ const styles = StyleSheet.create({
     // height: "40%",
     justifyContent: "center",
     marginTop: "5%",
-    paddingVertical: 10
-  
+    paddingVertical: 10,
   },
 });

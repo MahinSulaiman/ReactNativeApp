@@ -1,35 +1,40 @@
-import { View, Text,StyleSheet } from 'react-native'
-import React,{useContext} from 'react'
-import MovieCards from '../components/MovieCards'
-import { FavouritesContext } from '../context/FavouritesContext'
+import {
+  ScrollView,
+  Text,
+  StyleSheet,
+  TouchableOpacity,
+  Image,
+  Dimensions,
+} from "react-native";
+import React, { useContext } from "react";
 
+import { FavouritesContext } from "../context/FavouritesContext";
+
+import ListMovies from "../components/ListMovies";
 
 export default function FavouriteScreen() {
-  const {favourites}=useContext(FavouritesContext)
+  const { favourites } = useContext(FavouritesContext);
+
   return (
-    <View style={styles.container}>
-      {/* <Text>AccountScreen</Text> */}
-     {/* <View style={styles.cards}> */}
-      <MovieCards movies={favourites}/>
-      {/* </View> */}
-    </View>
-  )
+    <ScrollView style={styles.container}>
+      <Text style={styles.title}>Favourite Movies</Text>
+      <ListMovies movies={favourites} />
+    </ScrollView>
+  );
 }
 
-const styles=StyleSheet.create({
-  container:{
-    flex:1,
-    flexWrap:"wrap",
-    backgroundColor:"black"
-  
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: "#040714",
+    marginTop: 35,
   },
 
-  cards:{
-    // flex: 1,
-    // flexDirection: 'column',
-    // flexWrap: 'wrap',
-    // justifyContent: 'center', // Adjust alignment as needed
-    // alignItems: 'flex-start', // Align items at the start of each line
-    // padding: 10,
-  }
-})
+  title: {
+    color: "white",
+    fontSize: 35,
+    fontWeight: "bold",
+    alignSelf: "center",
+    marginBottom: 15,
+  },
+});

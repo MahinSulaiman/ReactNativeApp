@@ -37,16 +37,16 @@ export default function HomeScreen() {
 
       <View style={styles.poster}>
         <Text style={{ color: "white" }}>Family Movies</Text>
-        <GetMovies movieUrl="https://api.sampleapis.com/movies/family" />
+        <MovieCards movieUrl="https://api.sampleapis.com/movies/family" />
         <Text style={{ color: "white" }}>Animation Movies</Text>
-        <GetMovies movieUrl="https://api.sampleapis.com/movies/animation" />
+        <MovieCards movieUrl="https://api.sampleapis.com/movies/animation" />
         <Text style={{ color: "white" }}>Horror Movies</Text>
-        <GetMovies movieUrl="https://api.sampleapis.com/movies/horror"/>
+        <MovieCards movieUrl="https://api.sampleapis.com/movies/horror"/>
        
         <Text style={{ color: "white" }}>Popular Languages</Text>
         <TitleCards />
         <Text style={{ color: "white" }}>Comedy Movies</Text>
-        <GetMovies movieUrl="https://api.sampleapis.com/movies/comedy"/>
+        <MovieCards movieUrl="https://api.sampleapis.com/movies/comedy"/>
         
         
       </View>
