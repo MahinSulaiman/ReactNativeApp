@@ -1,7 +1,7 @@
 import { View, Text,ScrollView ,Image, Dimensions} from 'react-native'
 import React from 'react'
 
-export default function TitleCards(titles) {
+export default function TitleCards({ useLanguageUrls }) {
     const cardWidth = Dimensions.get("window").width*0.35;
     const cardHeight=Dimensions.get("window").height*0.10; 
 
@@ -19,9 +19,24 @@ export default function TitleCards(titles) {
       
         ];
 
+        const genreUrls=[
+          "https://img10.hotstar.com/image/upload/f_auto,q_90,w_1920/sources/r1/cms/prod/5262/1535262-a-fbabfaf1176e",
+          "https://img10.hotstar.com/image/upload/f_auto,q_90,w_1920/sources/r1/cms/prod/5285/1535285-a-88035ca1ae69",
+          "https://img10.hotstar.com/image/upload/f_auto,q_90,w_1920/sources/r1/cms/prod/5284/1535284-a-656c6b45a905",
+          "https://img10.hotstar.com/image/upload/f_auto,q_90,w_1920/sources/r1/cms/prod/5264/1535264-a-9e7871687c76",
+          "https://img10.hotstar.com/image/upload/f_auto,q_90,w_1920/sources/r1/cms/prod/5292/1535292-a-5739f9c84b63",
+          "https://img10.hotstar.com/image/upload/f_auto,q_90,w_1920/sources/r1/cms/prod/5267/1535267-a-3cae422b372e",
+          "https://img10.hotstar.com/image/upload/f_auto,q_90,w_1920/sources/r1/cms/prod/5288/1535288-a-690bac400aa1",
+          "https://img10.hotstar.com/image/upload/f_auto,q_90,w_1920/sources/r1/cms/prod/5281/1535281-a-b56dc39e5bb7",
+          "https://img10.hotstar.com/image/upload/f_auto,q_90,w_1920/sources/r1/cms/prod/5302/1535302-a-e90748391e0d",
+          "https://img10.hotstar.com/image/upload/f_auto,q_90,w_1920/sources/r1/cms/prod/5250/1535250-a-b320bf06458d",
+        ];
+
+        const urlsToUse = useLanguageUrls ? languageUrls : genreUrls;
+
   return (
     <ScrollView horizontal>
-      {languageUrls.map((title, index) => (
+      {urlsToUse.map((title, index) => (
         <View key={index}>
         
             <Image

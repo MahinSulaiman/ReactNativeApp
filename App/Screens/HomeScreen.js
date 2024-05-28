@@ -5,30 +5,27 @@ import {
   Image,
   ScrollView,
   TouchableOpacity,
-  Dimensions
+  Dimensions,
 } from "react-native";
 import { PosterImgs } from "../components/PosterImgs";
 import MovieCards from "../components/MovieCards";
-import GetMovies from "../Api/GetMovies";
+import Brands from "../components/Brands";
 import TitleCards from "../components/TitleCards";
 
-
 export default function HomeScreen() {
-
- 
-
-
   return (
-    <ScrollView style={styles.container} >
+    <ScrollView style={styles.container}>
       <View style={styles.poster}>
         <View style={styles.top}>
           <Image
             style={styles.img}
-            source={require("../../assets/logo.webp")}
+            source={require("../assets/logo.webp")}
           />
 
           <TouchableOpacity activeOpacity={5} style={styles.subButton}>
-            <Text style={{ color: "yellow" ,alignSelf:"center"}}>Subscribe</Text>
+            <Text style={{ color: "yellow", alignSelf: "center" }}>
+              Subscribe
+            </Text>
           </TouchableOpacity>
         </View>
 
@@ -36,19 +33,23 @@ export default function HomeScreen() {
       </View>
 
       <View style={styles.poster}>
-        <Text style={{ color: "white" }}>Family Movies</Text>
+        <Text style={styles.titles}>Family Movies</Text>
         <MovieCards movieUrl="https://api.sampleapis.com/movies/family" />
-        <Text style={{ color: "white" }}>Animation Movies</Text>
+        <Text style={styles.titles}>Animation Movies</Text>
         <MovieCards movieUrl="https://api.sampleapis.com/movies/animation" />
-        <Text style={{ color: "white" }}>Horror Movies</Text>
-        <MovieCards movieUrl="https://api.sampleapis.com/movies/horror"/>
-       
-        <Text style={{ color: "white" }}>Popular Languages</Text>
-        <TitleCards />
-        <Text style={{ color: "white" }}>Comedy Movies</Text>
-        <MovieCards movieUrl="https://api.sampleapis.com/movies/comedy"/>
-        
-        
+        <Text style={styles.titles}>Horror Movies</Text>
+        <MovieCards movieUrl="https://api.sampleapis.com/movies/horror" />
+
+        <Brands />
+
+        <Text style={styles.titles}>Popular Languages</Text>
+        <TitleCards useLanguageUrls={true} />
+
+        <Text style={styles.titles}>Popular Genres</Text>
+        <TitleCards useLanguageUrls={false} />
+
+        <Text style={styles.titles}>Comedy Movies</Text>
+        <MovieCards movieUrl="https://api.sampleapis.com/movies/comedy" />
       </View>
     </ScrollView>
   );
@@ -80,9 +81,9 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: "gold",
     marginTop: 4,
-    justifyContent:"center",
-    borderRadius:6,
-    width:"20%"
+    justifyContent: "center",
+    borderRadius: 6,
+    width: "20%",
   },
 
   poster: {
@@ -101,5 +102,11 @@ const styles = StyleSheet.create({
     width: "100%",
     padding: "2%",
     top: "7%",
+  },
+
+  titles: {
+    color: "white",
+    fontSize: 18,
+    fontWeight: "bold",
   },
 });

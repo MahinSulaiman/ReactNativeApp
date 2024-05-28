@@ -18,9 +18,11 @@ export const FavouritesProvider = ({ children }) => {
     }
   };
 
+  const FavouriteCount=favourites.length
+
   return (
     <FavouritesContext.Provider
-      value={{ favourites, toggleFavourite, Favourite }}
+      value={{ favourites, toggleFavourite, Favourite ,FavouriteCount}}
     >
       {children}
     </FavouritesContext.Provider>

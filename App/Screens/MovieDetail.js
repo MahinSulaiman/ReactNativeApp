@@ -7,9 +7,9 @@ import {
   ScrollView,
 } from "react-native";
 import React from "react";
-import { AntDesign } from "@expo/vector-icons";
-import { MaterialCommunityIcons } from "@expo/vector-icons";
-import { Ionicons } from "@expo/vector-icons";
+import { AntDesign,MaterialCommunityIcons  } from "@expo/vector-icons";
+// import { MaterialCommunityIcons } from "@expo/vector-icons";
+
 import MovieCards from "../components/MovieCards";
 import { FavouritesContext } from "../context/FavouritesContext";
 import { useContext, useState, useEffect } from "react";
@@ -79,7 +79,7 @@ export default function MovieDetail({ route }) {
           </TouchableOpacity>
         </View>
         <View>
-          <Text style={{ color: "gray", fontSize: 20, margin: 10 }}>
+          <Text style={{ color: "gray", fontSize: 20, margin: 10,textAlign: 'justify'  }}>
             Joy, Sadness, Anger, Fear and Disgust have been running a successful
             operation by all accounts. However, when Anxiety shows up, they
             aren't sure how to feel.
@@ -89,12 +89,11 @@ export default function MovieDetail({ route }) {
       <View style={{ flexDirection: "row", justifyContent: "space-evenly" }}>
         <AntDesign name="plus" size={24} color="white" />
         <MaterialCommunityIcons name="share" size={24} color="white" />
-        {/* <Ionicons name="heart-outline" size={24} color="red" filled="red"/> */}
-        {/* <TouchableOpacity onpress={AddFavourite({movie})}> */}
+        
         <MaterialCommunityIcons
           name="cards-heart"
           size={24}
-          color={fav ? "red" : "yellow"}
+          color={fav ? "red" : "white"}
           onPress={() => toggleFavourite(movie)}
         />
         {/* </TouchableOpacity> */}
